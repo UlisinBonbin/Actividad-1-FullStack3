@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -13,9 +14,8 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Table(name = "reportes")
-
+@EntityListeners(AuditingEntityListener.class) // <-- Obligatorio para que @CreatedDate funcione
 public class Reportes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Reportes {
 
     private Double latitud;
 
-    private Double longuitud;
+    private Double longitud; // <-- Corregido el typo
 
     private String descripcion;
 
@@ -35,4 +35,7 @@ public class Reportes {
     @Enumerated(EnumType.STRING)
     private EstadoReporte estado;
 
+    private Long usuarioId;
+    private String runCiudadano;
+    private Boolean anonimo;
 }
