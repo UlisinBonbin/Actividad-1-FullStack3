@@ -1,7 +1,7 @@
 package com.fullstack3.usuario_service.service;
 
-import com.fullstack3.usuario_service.DTO.UsuarioRequestDTO;
-import com.fullstack3.usuario_service.DTO.UsuarioResponseDTO;
+import com.fullstack3.usuario_service.dto.UsuarioRequestDTO;
+import com.fullstack3.usuario_service.dto.UsuarioResponseDTO;
 import com.fullstack3.usuario_service.model.Usuario;
 import com.fullstack3.usuario_service.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
