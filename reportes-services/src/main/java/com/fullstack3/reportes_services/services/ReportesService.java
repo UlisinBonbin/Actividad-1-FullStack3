@@ -1,7 +1,7 @@
 package com.fullstack3.reportes_services.services;
 
-import com.fullstack3.reportes_services.DTO.ReporteRequestDTO;
-import com.fullstack3.reportes_services.DTO.ReporteResponseDTO;
+import com.fullstack3.reportes_services.dto.ReporteRequestDTO;
+import com.fullstack3.reportes_services.dto.ReporteResponseDTO;
 import com.fullstack3.reportes_services.enums.EstadoReporte;
 import com.fullstack3.reportes_services.model.Reportes;
 import com.fullstack3.reportes_services.repository.ReportesRepository;

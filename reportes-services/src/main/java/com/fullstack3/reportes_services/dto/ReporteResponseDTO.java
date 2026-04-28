@@ -1,4 +1,4 @@
-package com.fullstack3.reportes_services.DTO;
+package com.fullstack3.reportes_services.dto;
 
 import com.fullstack3.reportes_services.enums.EstadoReporte;
 import lombok.AllArgsConstructor;

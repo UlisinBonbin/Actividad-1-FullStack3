@@ -1,7 +1,7 @@
 package com.fullstack3.reportes_services.controller;
 
-import com.fullstack3.reportes_services.DTO.ReporteRequestDTO;
-import com.fullstack3.reportes_services.DTO.ReporteResponseDTO;
+import com.fullstack3.reportes_services.dto.ReporteRequestDTO;
+import com.fullstack3.reportes_services.dto.ReporteResponseDTO;
 import com.fullstack3.reportes_services.services.ReportesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
