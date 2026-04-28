@@ -33,10 +33,4 @@ public class Reportes {
 
     private String estado;
 
-    private String cambiopoyo;
-
-
-
-
-
 }
