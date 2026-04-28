@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmergenciaOrchestratorService {
+
     @Autowired
     private UsuarioClient usuarioClient;
 
@@ -17,18 +18,32 @@ public class EmergenciaOrchestratorService {
     private ReportesClient reportesClient;
 
     public ReporteResponseDTO procesarReporte(ReporteRequestDTO request) {
-        if (request.getUsuarioId() != null) {
-            try {
-                usuarioClient.obtenerPorId(request.getUsuarioId());
-            } catch (Exception e) {
-                throw new RuntimeException("Error: El usuario con ID " + request.getUsuarioId() + " no existe.");
+
+        // Si NO es anónimo, debemos obtener los datos del usuario
+        if (Boolean.FALSE.equals(request.getAnonimo())) {
+
+            if (request.getUsuarioId() == null) {
+                throw new RuntimeException("Error: usuarioId es obligatorio cuando anonimo = false");
             }
+
+            // 1. Obtener usuario desde usuario-service
+            UsuarioResponseDTO usuario = usuarioClient.obtenerPorId(request.getUsuarioId());
+
+            if (usuario == null) {
+                throw new RuntimeException("Error: no existe el usuario con ID " + request.getUsuarioId());
+            }
+
+            // 2. Rellenar runCiudadano automáticamente
+            request.setRunCiudadano(usuario.getRun());
         }
+
+        // 3. Enviar reporte al microservicio de reportes
         return reportesClient.guardarReporte(request);
     }
 
     public UsuarioResponseDTO registrarUsuario(UsuarioRequestDTO request) {
         return usuarioClient.crearUsuario(request);
     }
-
 }
+
+
