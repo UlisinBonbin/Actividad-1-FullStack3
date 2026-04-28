@@ -1,5 +1,6 @@
 package com.fullstack3.reportes_services.model;
 
+import com.fullstack3.reportes_services.enums.EstadoReporte;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Reportes {
 
     private String tipoIncendio;
 
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoReporte estado;
 
 }
