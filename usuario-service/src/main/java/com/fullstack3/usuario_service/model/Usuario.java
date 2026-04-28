@@ -1,5 +1,6 @@
 package com.fullstack3.usuario_service.model;
 
+import com.fullstack3.usuario_service.enums.Roles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class Usuario {
 
     private String run;
 
-    private String pasaporte;
+    @Enumerated(EnumType.STRING)
+    private Roles rol;
 
 }

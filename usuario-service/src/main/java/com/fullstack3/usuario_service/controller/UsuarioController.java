@@ -1,4 +1,28 @@
 package com.fullstack3.usuario_service.controller;
 
+import com.fullstack3.usuario_service.DTO.UsuarioRequestDTO;
+import com.fullstack3.usuario_service.DTO.UsuarioResponseDTO;
+import com.fullstack3.usuario_service.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RequestMapping("/api/v1/usuarios")
+@RestController
 public class UsuarioController {
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @GetMapping
+    public List<UsuarioResponseDTO> getAllUsuarios(){
+        return usuarioService.obtenerTodos();
+    }
+
+    @PostMapping
+    public UsuarioResponseDTO saveUsuario(@RequestBody UsuarioRequestDTO requestDTO){
+        return usuarioService.crearUsuario(requestDTO);
+    }
+
 }
