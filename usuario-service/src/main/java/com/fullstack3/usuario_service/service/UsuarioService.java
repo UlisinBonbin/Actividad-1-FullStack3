@@ -26,6 +26,12 @@ public class UsuarioService {
                 .collect(Collectors.toList());
     }
 
+    public UsuarioResponseDTO obtenerPorId(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return new UsuarioResponseDTO(usuario.getId(), usuario.getRun(), usuario.getRol());
+    }
+
     // Crear un usuario (Recibe RequestDTO, Retorna ResponseDTO)
     public UsuarioResponseDTO crearUsuario(UsuarioRequestDTO requestDTO) {
         // Paso A: Convertir el DTO que llega desde el Controller a una Entidad
