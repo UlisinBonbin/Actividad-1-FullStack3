@@ -1,4 +1,4 @@
-package com.fullstack3.bff_emergencias.DTO;
+package com.fullstack3.bff_emergencias.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

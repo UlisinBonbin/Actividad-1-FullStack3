@@ -1,6 +1,6 @@
 package com.fullstack3.bff_emergencias.client;
-import com.fullstack3.bff_emergencias.DTO.UsuarioRequestDTO;
-import com.fullstack3.bff_emergencias.DTO.UsuarioResponseDTO;
+import com.fullstack3.bff_emergencias.dto.UsuarioRequestDTO;
+import com.fullstack3.bff_emergencias.dto.UsuarioResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

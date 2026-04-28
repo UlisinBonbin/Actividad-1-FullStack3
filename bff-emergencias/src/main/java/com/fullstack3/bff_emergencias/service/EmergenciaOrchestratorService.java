@@ -1,10 +1,10 @@
 package com.fullstack3.bff_emergencias.service;
-import com.fullstack3.bff_emergencias.DTO.UsuarioRequestDTO;
-import com.fullstack3.bff_emergencias.DTO.UsuarioResponseDTO;
+import com.fullstack3.bff_emergencias.dto.UsuarioRequestDTO;
+import com.fullstack3.bff_emergencias.dto.UsuarioResponseDTO;
 import com.fullstack3.bff_emergencias.client.ReportesClient;
 import com.fullstack3.bff_emergencias.client.UsuarioClient;
-import com.fullstack3.bff_emergencias.DTO.ReporteRequestDTO;
-import com.fullstack3.bff_emergencias.DTO.ReporteResponseDTO;
+import com.fullstack3.bff_emergencias.dto.ReporteRequestDTO;
+import com.fullstack3.bff_emergencias.dto.ReporteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

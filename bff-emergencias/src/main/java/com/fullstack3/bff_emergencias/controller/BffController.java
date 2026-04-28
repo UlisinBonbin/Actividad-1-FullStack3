@@ -1,8 +1,8 @@
 package com.fullstack3.bff_emergencias.controller;
-import com.fullstack3.bff_emergencias.DTO.ReporteRequestDTO;
-import com.fullstack3.bff_emergencias.DTO.ReporteResponseDTO;
-import com.fullstack3.bff_emergencias.DTO.UsuarioRequestDTO;
-import com.fullstack3.bff_emergencias.DTO.UsuarioResponseDTO;
+import com.fullstack3.bff_emergencias.dto.ReporteRequestDTO;
+import com.fullstack3.bff_emergencias.dto.ReporteResponseDTO;
+import com.fullstack3.bff_emergencias.dto.UsuarioRequestDTO;
+import com.fullstack3.bff_emergencias.dto.UsuarioResponseDTO;
 import com.fullstack3.bff_emergencias.service.EmergenciaOrchestratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
