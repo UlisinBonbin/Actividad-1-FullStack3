@@ -26,10 +26,20 @@ public class ReportesService {
                 .collect(Collectors.toList());
     }
 
-    // 2. Guardar reporte (Recibe RequestDTO, devuelve ResponseDTO)
-    public ReporteResponseDTO guardarReporte(ReporteRequestDTO requestDTO){
+    public ReporteResponseDTO guardarReporte(ReporteRequestDTO requestDTO) {
+        if (requestDTO.getAnonimo() == null) {
+            throw new RuntimeException("El campo anonimo es obligatorio");
+        }
 
-        // Transformamos lo que llegó a la entidad Reportes
+        if (Boolean.TRUE.equals(requestDTO.getAnonimo())) {
+            requestDTO.setUsuarioId(null);
+            requestDTO.setRunCiudadano(null);
+        } else {
+            if (requestDTO.getUsuarioId() == null && (requestDTO.getRunCiudadano() == null || requestDTO.getRunCiudadano().isBlank())) {
+                throw new RuntimeException("Si no es anónimo, debes enviar usuarioId o runCiudadano");
+            }
+        }
+
         Reportes reporte = new Reportes();
         reporte.setLatitud(requestDTO.getLatitud());
         reporte.setLongitud(requestDTO.getLongitud());
@@ -38,14 +48,9 @@ public class ReportesService {
         reporte.setUsuarioId(requestDTO.getUsuarioId());
         reporte.setRunCiudadano(requestDTO.getRunCiudadano());
         reporte.setAnonimo(requestDTO.getAnonimo());
-
-        // Forzamos el estado inicial a PENDIENTE
         reporte.setEstado(EstadoReporte.PENDIENTE);
 
-        // Guardamos en la base de datos
         Reportes reporteGuardado = reportesRepository.save(reporte);
-
-        // Retornamos el DTO de respuesta
         return mapearAResponseDTO(reporteGuardado);
     }
 
