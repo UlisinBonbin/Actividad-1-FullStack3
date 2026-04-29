@@ -29,20 +29,26 @@ public class UsuarioService {
     public UsuarioResponseDTO obtenerPorId(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        return new UsuarioResponseDTO(usuario.getId(), usuario.getRun(), usuario.getRol());
+
+        return mapearAResponseDTO(usuario);
     }
 
     // Crear un usuario (Recibe RequestDTO, Retorna ResponseDTO)
     public UsuarioResponseDTO crearUsuario(UsuarioRequestDTO requestDTO) {
-        // Paso A: Convertir el DTO que llega desde el Controller a una Entidad
+
+        if (requestDTO.getRun() == null || requestDTO.getRun().isBlank()) {
+            throw new RuntimeException("El run es obligatorio");
+        }
+
+        if (requestDTO.getRol() == null) {
+            throw new RuntimeException("El rol es obligatorio");
+        }
+
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setRun(requestDTO.getRun());
         nuevoUsuario.setRol(requestDTO.getRol());
 
-        // Paso B: Guardar la Entidad en la base de datos
         Usuario usuarioGuardado = usuarioRepository.save(nuevoUsuario);
-
-        // Paso C: Convertir la Entidad recién guardada al DTO de respuesta y retornarlo
         return mapearAResponseDTO(usuarioGuardado);
     }
 
