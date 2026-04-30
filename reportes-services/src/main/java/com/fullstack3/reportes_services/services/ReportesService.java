@@ -5,17 +5,17 @@ import com.fullstack3.reportes_services.dto.ReporteResponseDTO;
 import com.fullstack3.reportes_services.enums.EstadoReporte;
 import com.fullstack3.reportes_services.model.Reportes;
 import com.fullstack3.reportes_services.repository.ReportesRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@AllArgsConstructor
 @Service
-public class ReportesService {
+public final class ReportesService {
 
-    @Autowired
-    private ReportesRepository reportesRepository;
+    private  ReportesRepository reportesRepository;
 
     // 1. Obtener todos los reportes convertidos a DTO
     public List<ReporteResponseDTO> obtenerTodos(){
