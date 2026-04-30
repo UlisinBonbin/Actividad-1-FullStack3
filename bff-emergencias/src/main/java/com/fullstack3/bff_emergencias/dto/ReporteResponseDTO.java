@@ -18,5 +18,8 @@ public class ReporteResponseDTO {
     private String tipoIncendio;
     private String estado;
     private String runCiudadano;
+    private String nivelPrioridad;
+    private Integer radioImpacto;
+    private String equipoAsignado;
 
 }
