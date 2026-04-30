@@ -9,6 +9,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fullstack3.reportes_services.factory.ReporteHandlerFactory;
+import com.fullstack3.reportes_services.handler.ReporteHandler;
+
 import java.util.List;
 import java.util.stream.Collectors;
 @AllArgsConstructor
@@ -16,6 +19,8 @@ import java.util.stream.Collectors;
 public final class ReportesService {
 
     private  ReportesRepository reportesRepository;
+
+    private ReporteHandlerFactory factory;
 
     // 1. Obtener todos los reportes convertidos a DTO
     public List<ReporteResponseDTO> obtenerTodos(){
@@ -50,9 +55,16 @@ public final class ReportesService {
         reporte.setAnonimo(requestDTO.getAnonimo());
         reporte.setEstado(EstadoReporte.PENDIENTE);
 
+        // Aca se usa el factory method
+        ReporteHandler handler = factory.getHandler(requestDTO.getTipoIncendio());
+        handler.procesarSegunTipo(reporte, requestDTO);
+
+
         Reportes reporteGuardado = reportesRepository.save(reporte);
         return mapearAResponseDTO(reporteGuardado);
     }
+
+
 
     // 3. Método auxiliar de mapeo (Entidad -> DTO)
     private ReporteResponseDTO mapearAResponseDTO(Reportes reporte) {
@@ -65,6 +77,11 @@ public final class ReportesService {
         responseDTO.setTipoIncendio(reporte.getTipoIncendio());
         responseDTO.setEstado(reporte.getEstado());
         responseDTO.setRunCiudadano(reporte.getRunCiudadano());
+
+        responseDTO.setNivelPrioridad(reporte.getNivelPrioridad());
+        responseDTO.setRadioImpacto(reporte.getRadioImpacto());
+        responseDTO.setEquipoAsignado(reporte.getEquipoAsignado());
+
         return responseDTO;
     }
 }

@@ -1,6 +1,8 @@
 package com.fullstack3.reportes_services.model;
 
+import com.fullstack3.reportes_services.enums.EquipoAsignado;
 import com.fullstack3.reportes_services.enums.EstadoReporte;
+import com.fullstack3.reportes_services.enums.NivelPrioridad;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +28,7 @@ public class Reportes {
 
     private Double latitud;
 
-    private Double longitud; // <-- Corregido el typo
+    private Double longitud;
 
     private String descripcion;
 
@@ -38,4 +40,12 @@ public class Reportes {
     private Long usuarioId;
     private String runCiudadano;
     private Boolean anonimo;
+
+    @Enumerated(EnumType.STRING)
+    private NivelPrioridad nivelPrioridad;
+
+    private Integer radioImpacto; //Esta en metros
+
+    @Enumerated(EnumType.STRING)
+    private EquipoAsignado equipoAsignado;
 }
